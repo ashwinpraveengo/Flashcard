@@ -54,15 +54,15 @@ class MyApp extends StatelessWidget {
         Chapter(
           name: "Kinematics",
           flashcards: [
-            Flashcard(question: r"Equation of Motion", answer: r"v = u + at"),
-            Flashcard(question: r"Kinematic Equation", answer: r"s = ut + \frac{1}{2}at^2"),
+            Flashcard(question: r"Equation~of~Motion", answer: r"v = u + at"),
+            Flashcard(question: r"Kinematic~Equation", answer: r"s = ut + \frac{1}{2}at^2"),
           ],
         ),
         Chapter(
           name: "Gravitation",
           flashcards: [
-            Flashcard(question: r"Gravitational Force", answer: r"F = G \cdot \frac{m_1 \cdot m_2}{r^2}"),
-            Flashcard(question: r"Acceleration due to Gravity", answer: r"g = G \cdot \frac{M}{r^2}"),
+            Flashcard(question: r"Gravitational~Force", answer: r"F = G \cdot \frac{m_1 \cdot m_2}{r^2}"),
+            Flashcard(question: r"Acceleration~due~to~Gravity", answer: r"g = G \cdot \frac{M}{r^2}"),
           ],
         ),
       ],
