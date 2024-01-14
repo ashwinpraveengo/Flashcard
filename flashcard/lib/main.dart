@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
+import 'package:flutter_math_fork/flutter_math.dart';
 
 void main() {
   runApp(MyApp());
@@ -34,15 +35,15 @@ class MyApp extends StatelessWidget {
         Chapter(
           name: "Integration",
           flashcards: [
-            Flashcard(question: "∫ 2x dx", answer: "x^2 + C"),
-            Flashcard(question: "∫ cos(x) dx", answer: "sin(x) + C"),
+            Flashcard(question: r"\int x^n \,dx", answer: r"\frac{x^{n+1}}{n+1} + C"),
+            Flashcard(question: r"\int \cos(x) \,dx", answer: r"\sin(x) + C"),
           ],
         ),
         Chapter(
           name: "Differentiation",
           flashcards: [
-            Flashcard(question: "d/dx(x^2)", answer: "2x"),
-            Flashcard(question: "d/dx(sin(x))", answer: "cos(x)"),
+            Flashcard(question: r"\frac{d}{dx}(x^n)", answer: r"nx^{n-1} "),
+            Flashcard(question: r"\frac{d}{dx}(\sin(x))", answer: r"\cos(x)"),
           ],
         ),
       ],
@@ -53,16 +54,15 @@ class MyApp extends StatelessWidget {
         Chapter(
           name: "Kinematics",
           flashcards: [
-            Flashcard(question: "Equation of Motion", answer: "v = u + at"),
-            Flashcard(question: "Kinematic Equation", answer: "s = ut + (1/2)at^2"),
+            Flashcard(question: r"Equation of Motion", answer: r"v = u + at"),
+            Flashcard(question: r"Kinematic Equation", answer: r"s = ut + \frac{1}{2}at^2"),
           ],
         ),
         Chapter(
           name: "Gravitation",
           flashcards: [
-            Flashcard(question: "Gravitational Force", answer: "F = G * (m1 * m2) / r^2"),
-            Flashcard(question: "Acceleration due to Gravity", answer: "g = G * M / r^2"),
-
+            Flashcard(question: r"Gravitational Force", answer: r"F = G \cdot \frac{m_1 \cdot m_2}{r^2}"),
+            Flashcard(question: r"Acceleration due to Gravity", answer: r"g = G \cdot \frac{M}{r^2}"),
           ],
         ),
       ],
@@ -357,6 +357,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
   }
 }
 
+
 class FlashcardWidget extends StatelessWidget {
   final Flashcard flashcard;
 
@@ -373,9 +374,9 @@ class FlashcardWidget extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              Math.tex(
                 flashcard.question,
-                style: const TextStyle(fontSize: 18, color: Colors.white), 
+                textStyle: TextStyle(fontSize: 18, color: Colors.white),
               ),
             ],
           ),
@@ -389,9 +390,8 @@ class FlashcardWidget extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                flashcard.answer,
-                style: const TextStyle(fontSize: 18, color: Colors.black), 
+              Math.tex(flashcard.answer,
+                textStyle: TextStyle(fontSize: 18, color: Colors.black),
               ),
             ],
           ),
