@@ -29,24 +29,44 @@ class Flashcard {
 class MyApp extends StatelessWidget {
   final List<Subject> subjects = [
     Subject(
-      name: "Subject 1",
+      name: "Maths",
       chapters: [
         Chapter(
-          name: "Chapter 1",
+          name: "Integration",
           flashcards: [
-            Flashcard(question: "Question 1", answer: "Answer 1"),
-            Flashcard(question: "Question 2", answer: "Answer 2"),
+            Flashcard(question: "∫ 2x dx", answer: "x^2 + C"),
+            Flashcard(question: "∫ cos(x) dx", answer: "sin(x) + C"),
           ],
         ),
         Chapter(
-          name: "Chapter 2",
+          name: "Differentiation",
           flashcards: [
-            Flashcard(question: "Question 3", answer: "Answer 3"),
+            Flashcard(question: "d/dx(x^2)", answer: "2x"),
+            Flashcard(question: "d/dx(sin(x))", answer: "cos(x)"),
           ],
         ),
       ],
     ),
-    // Add more subjects as needed
+    Subject(
+      name: "Physics",
+      chapters: [
+        Chapter(
+          name: "Kinematics",
+          flashcards: [
+            Flashcard(question: "Equation of Motion", answer: "v = u + at"),
+            Flashcard(question: "Kinematic Equation", answer: "s = ut + (1/2)at^2"),
+          ],
+        ),
+        Chapter(
+          name: "Gravitation",
+          flashcards: [
+            Flashcard(question: "Gravitational Force", answer: "F = G * (m1 * m2) / r^2"),
+            Flashcard(question: "Acceleration due to Gravity", answer: "g = G * M / r^2"),
+            // Add more flashcards as needed
+          ],
+        ),
+      ],
+    ),
   ];
 
   @override
@@ -349,13 +369,13 @@ class FlashcardWidget extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Card(
           elevation: 4,
-          color: Colors.blue, // Set the background color for questions
+          color: Colors.blue, 
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 "Question: ${flashcard.question}",
-                style: const TextStyle(fontSize: 18, color: Colors.white), // Set text color for questions
+                style: const TextStyle(fontSize: 18, color: Colors.white), 
               ),
             ],
           ),
@@ -365,13 +385,13 @@ class FlashcardWidget extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Card(
           elevation: 4,
-          color: Colors.lightGreen, // Set the background color for answers
+          color: Colors.lightGreen, 
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 "Answer: ${flashcard.answer}",
-                style: const TextStyle(fontSize: 18, color: Colors.black), // Set text color for answers
+                style: const TextStyle(fontSize: 18, color: Colors.black), 
               ),
             ],
           ),
