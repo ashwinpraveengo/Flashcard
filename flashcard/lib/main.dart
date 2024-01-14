@@ -77,7 +77,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.black,
         scaffoldBackgroundColor: Colors.black,
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.indigo,
         ),
       ),
       home: SubjectListScreen(subjects: subjects),
@@ -104,20 +104,36 @@ class _SubjectListScreenState extends State<SubjectListScreen> {
       body: ListView.builder(
         itemCount: widget.subjects.length,
         itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(widget.subjects[index].name),
-            subtitle: Text(
-              "${widget.subjects[index].chapters.length} chapters in this section",
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      ChapterListScreen(subject: widget.subjects[index]),
+          IconData iconData = Icons.category; // Change the icon based on your preference
+
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Card(
+              elevation: 4,
+              child: ListTile(
+                leading: Icon(
+                  iconData,
+                  color: Theme.of(context).primaryColor,
                 ),
-              );
-            },
+                title: Text(
+                  widget.subjects[index].name,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                subtitle: Text(
+                  "${widget.subjects[index].chapters.length} chapters in this section",
+                  style: TextStyle(fontSize: 16),
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          ChapterListScreen(subject: widget.subjects[index]),
+                    ),
+                  );
+                },
+              ),
+            ),
           );
         },
       ),
@@ -129,6 +145,7 @@ class _SubjectListScreenState extends State<SubjectListScreen> {
       ),
     );
   }
+
 
   void _showAddSubjectDialog(BuildContext context) {
     TextEditingController subjectController = TextEditingController();
