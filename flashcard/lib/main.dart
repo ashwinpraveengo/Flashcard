@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
           flashcards: [
             Flashcard(question: "Gravitational Force", answer: "F = G * (m1 * m2) / r^2"),
             Flashcard(question: "Acceleration due to Gravity", answer: "g = G * M / r^2"),
-            // Add more flashcards as needed
+
           ],
         ),
       ],
@@ -374,7 +374,7 @@ class FlashcardWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Question: ${flashcard.question}",
+                flashcard.question,
                 style: const TextStyle(fontSize: 18, color: Colors.white), 
               ),
             ],
@@ -390,7 +390,7 @@ class FlashcardWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Answer: ${flashcard.answer}",
+                flashcard.answer,
                 style: const TextStyle(fontSize: 18, color: Colors.black), 
               ),
             ],
