@@ -1,73 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
+import 'slidable_pages.dart';
+import 'data.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class Subject {
-  String name;
-  List<Chapter> chapters;
 
-  Subject({required this.name, required this.chapters});
-}
-
-class Chapter {
-  String name;
-  List<Flashcard> flashcards;
-
-  Chapter({required this.name, required this.flashcards});
-}
-
-class Flashcard {
-  String question;
-  String answer;
-
-  Flashcard({required this.question, required this.answer});
-}
 
 class MyApp extends StatelessWidget {
-  final List<Subject> subjects = [
-    Subject(
-      name: "Maths",
-      chapters: [
-        Chapter(
-          name: "Integration",
-          flashcards: [
-            Flashcard(question: r"\int x^n \,dx", answer: r"\frac{x^{n+1}}{n+1} + C"),
-            Flashcard(question: r"\int \cos(x) \,dx", answer: r"\sin(x) + C"),
-          ],
-        ),
-        Chapter(
-          name: "Differentiation",
-          flashcards: [
-            Flashcard(question: r"\frac{d}{dx}(x^n)", answer: r"nx^{n-1} "),
-            Flashcard(question: r"\frac{d}{dx}(\sin(x))", answer: r"\cos(x)"),
-          ],
-        ),
-      ],
-    ),
-    Subject(
-      name: "Physics",
-      chapters: [
-        Chapter(
-          name: "Kinematics",
-          flashcards: [
-            Flashcard(question: r"Equation~of~Motion", answer: r"v = u + at"),
-            Flashcard(question: r"Kinematic~Equation", answer: r"s = ut + \frac{1}{2}at^2"),
-          ],
-        ),
-        Chapter(
-          name: "Gravitation",
-          flashcards: [
-            Flashcard(question: r"Gravitational~Force", answer: r"F = G \cdot \frac{m_1 \cdot m_2}{r^2}"),
-            Flashcard(question: r"Acceleration~due~to~Gravity", answer: r"g = G \cdot \frac{M}{r^2}"),
-          ],
-        ),
-      ],
-    ),
-  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +24,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.indigo,
         ),
       ),
-      home: SubjectListScreen(subjects: subjects),
+      home: SlidablePages(),
     );
   }
 }
@@ -208,20 +152,36 @@ class _ChapterListScreenState extends State<ChapterListScreen> {
       body: ListView.builder(
         itemCount: widget.subject.chapters.length,
         itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(widget.subject.chapters[index].name),
-            subtitle: Text(
-              "${getCompletedFlashcards(widget.subject.chapters[index])} completed",
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      FlashcardScreen(chapter: widget.subject.chapters[index]),
+          Chapter chapter = widget.subject.chapters[index];
+
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Card(
+              elevation: 4,
+              child: ListTile(
+                leading: Image.asset(
+                  'images/chapicon.png', // Replace with your actual path to the image
+                  width: 40,
+                  height: 40,
                 ),
-              );
-            },
+                title: Text(
+                  chapter.name,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                subtitle: Text(
+                  "${chapter.flashcards.length} flashcards",
+                  style: TextStyle(fontSize: 16),
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FlashcardScreen(chapter: chapter),
+                    ),
+                  );
+                },
+              ),
+            ),
           );
         },
       ),
@@ -232,14 +192,6 @@ class _ChapterListScreenState extends State<ChapterListScreen> {
         child: const Icon(Icons.add),
       ),
     );
-  }
-
-  String getCompletedFlashcards(Chapter chapter) {
-    int completedFlashcards = chapter.flashcards
-        .where((card) => card.answer.isNotEmpty)
-        .length;
-
-    return "$completedFlashcards/${chapter.flashcards.length}";
   }
 
   void _showAddChapterDialog(BuildContext context) {
