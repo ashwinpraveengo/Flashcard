@@ -11,7 +11,7 @@ class WelcomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Your App Name"),
+        title: const Text("Flashmaster"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
