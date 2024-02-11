@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  
   flutter:
     sdk: flutter
   flutter_tex: ^4.0.6
@@ -37,6 +38,8 @@ dependencies:
   flip_card: ^0.7.0
   flutter_math_fork: ^0.7.2
   google_sign_in: ^6.2.1
+  animated_splash_screen: 
+  lottie: ^3.1.2
 
 dev_dependencies:
   flutter_test:

@@ -1,8 +1,8 @@
+import 'package:flashcard/views/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
-import 'slidable_pages.dart';
-import 'data.dart';
+import 'constants/data.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,7 +24,8 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.indigo,
         ),
       ),
-      home: SlidablePages(),
+      debugShowCheckedModeBanner: false,
+      home: SplashScreen(),
     );
   }
 }
